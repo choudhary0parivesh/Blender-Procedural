@@ -1,0 +1,23 @@
+shader fractal(
+
+float creal = 0,
+float cimag = 0,
+
+
+point position = P,
+output color fractalcolor = 0
+){
+float real = position[0];
+float imag = position[1];
+float n=16;
+float xtmp;
+for(float i=0;i<2000;i++){
+
+    xtmp = tan(pow((real*real + imag*imag),(n/2))*cos(n*atan2(imag,real)) + 2*creal);
+    imag = tan(pow((real * real + imag * imag),(n/2))*sin(n*atan2(imag, real)) + cimag);
+    real = xtmp;
+
+    if(sqrt(real*real+imag*imag)>80)
+        fractalcolor =i/200;
+}
+}
