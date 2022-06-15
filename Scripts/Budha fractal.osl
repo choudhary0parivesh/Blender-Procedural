@@ -1,0 +1,20 @@
+shader MBudha(
+    int NMAX = 17,
+    output closure color CL = holdout()
+){
+   float xnew, ynew;
+   int i, tt, t;
+   int j;
+
+   for (i=0;i<NMAX;i++) {
+        xnew = (pow(P[0], 2) - pow(P[1], 2)*1.2 + P[0])*-1;
+        ynew = (2 * P[0] * P[1] + P[1]);
+        if (xnew*xnew + ynew*ynew> 0.0001) {
+            P[0] = xnew;
+            P[1] = ynew;
+            CL = emission()*color(noise("perlin",P[0]*xnew*25), noise("perlin",P[1]*ynew*24),noise("perlin",P[1]*xnew*25));
+        } 
+     
+   }
+    return;
+}
