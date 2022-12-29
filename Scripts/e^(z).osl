@@ -1,0 +1,17 @@
+shader fractal(
+    float creal = 0,
+    float cimag = 0,
+    point position = P,
+    output color fractalcolor = 0
+){
+    float i;
+    float real = position[0];
+    float imag = position[1];
+    for(i=0;i<1000;i++){
+        float realtemp =real;
+        real = exp(real)*cos(imag)+creal;
+        imag = exp(realtemp)*sin(imag)+cimag;
+        if(sqrt(real*real+imag*imag)>3) fractalcolor = ((i/600)); 
+    }
+   
+}
